@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/nsf/termbox-go"
+	"github.com/mattn/go-runewidth"
 )
 
 // A View is a window. It maintains its own internal buffer and cursor
@@ -353,7 +354,8 @@ func (v *View) draw() error {
 			if err := v.setRune(x, y, c.chr, fgColor, bgColor); err != nil {
 				return err
 			}
-			x++
+			//x++
+			x += runewidth.RuneWidth(c.chr)
 		}
 		y++
 	}
